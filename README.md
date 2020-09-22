@@ -1,5 +1,22 @@
 # s2i-login
 
+### Configuration
+
+```
+
+oc new-app --docker-image=quay.io/shifti/login-ui:v1 --name=login-v1
+oc expose svc/login-v1
+
+oc new-app --docker-image=quay.io/shifti/login-ui:v2 --name=login-v2
+oc expose svc/login-v2
+
+oc new-app --docker-image=quay.io/shifti/login-ui:v3 --name=login-v3
+oc expose svc/login-v3
+ 
+oc expose svc/login-v2 --hostname=login.apps.go.z.shifti.us --name=login.apps.go.z.shifti.us
+oc set route-backends login.apps.go.z.shifti.us login-v1=50 login-v2=50
+ ```
+
 ### Testing
 
 Once the container is built and the route has been weighted you can test:
