@@ -14,7 +14,7 @@ oc new-app --docker-image=quay.io/shifti/login-ui:v3 --name=login-v3
 oc expose svc/login-v3
  
 oc expose svc/login-v2 --hostname=login.apps.${TF_VAR_cluster_name}.${TF_VAR_cluster_basedomain} --name=login.apps.go.z.shifti.us
-oc set route-backends login.apps.go.z.shifti.us login-v1=50 login-v2=50
+oc set route-backends login.apps.${TF_VAR_cluster_name}.${TF_VAR_cluster_basedomain} login-v1=50 login-v2=50
  ```
 
 ### Testing
